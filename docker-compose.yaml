@@ -21,10 +21,10 @@ services:
       context: ./node
     image: robertoproj/node
     container_name: node
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 50s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 100s docker-entrypoint.sh
     volumes:
       - ./node:/usr/src/app
-    command: node index.js
+    command: bash -c "npm install express --save && node index.js"
     networks:
       - appnet
     depends_on:
